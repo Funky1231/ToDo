@@ -5,6 +5,7 @@ import { ListsModule } from './lists/lists.module';
 import { CategoriesModule } from './categories/categories.module';
 import { UsersModule } from './users/users.module';
 import { Category } from './categories/category.entity';
+import { List } from './lists/list.entity';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { Category } from './categories/category.entity';
       username: 'postgres',
       password: '3045',
       database: 'myLocalDB',
-      entities: [User, Category],
+      entities: [User, Category, List],
       synchronize: true,
       autoLoadEntities: true,
     }),
