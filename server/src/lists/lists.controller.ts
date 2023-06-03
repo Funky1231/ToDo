@@ -8,7 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateListDto } from './dto/update-list.dto';
 import { ListsService } from './lists.service';
 import { List } from './list.entity';
 import { CreateListDto } from './dto/create-list.dto';
@@ -41,7 +41,7 @@ export class ListsController {
     type: Number,
     description: 'id записи',
   })
-  getList(@Param() id: Pick<UpdateUserDto, 'id'>) {
+  getList(@Param() id: Pick<UpdateListDto, 'id'>) {
     return this.listsService.findOneList(id.id);
   }
 
@@ -53,7 +53,11 @@ export class ListsController {
     type: List,
   })
   addList(@Body() body: CreateListDto): Promise<List> {
-    return this.listsService.saveList(body.categoryId, body?.value, body?.title);
+    return this.listsService.saveList(
+      body.categoryId,
+      body?.value,
+      body?.title,
+    );
   }
 
   @Put('update-list')
@@ -63,9 +67,7 @@ export class ListsController {
     description: 'обновить записть',
     type: List,
   })
-  updateList(
-    @Body() body: { id: number; value: number; title: string },
-  ): Promise<List | null> {
+  updateList(@Body() body: UpdateListDto): Promise<List | null> {
     return this.listsService.updateList(body.id, body?.value, body?.title);
   }
 
