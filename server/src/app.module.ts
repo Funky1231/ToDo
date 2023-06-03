@@ -14,7 +14,7 @@ import { List } from './lists/list.entity';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: '3045',
+      password: '',
       database: 'myLocalDB',
       entities: [User, Category, List],
       synchronize: true,
