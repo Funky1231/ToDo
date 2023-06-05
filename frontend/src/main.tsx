@@ -1,16 +1,29 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import App from '@/app/App';
 import { BrowserRouter } from 'react-router-dom';
 import { Flowbite } from 'flowbite-react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
 import './app/styles/main.scss';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+const root = createRoot(document.getElementById('root') as HTMLElement);
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Flowbite>
-        <App />
-      </Flowbite>
+      <QueryClientProvider client={queryClient}>
+        <Flowbite>
+          <App />
+        </Flowbite>
+      </QueryClientProvider>
     </BrowserRouter>
   </React.StrictMode>,
 );
