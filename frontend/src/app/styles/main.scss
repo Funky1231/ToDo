@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "themes/light";
+@import "themes/dark";
+
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  min-height: 100vh;
+}
