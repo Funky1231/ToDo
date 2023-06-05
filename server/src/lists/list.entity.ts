@@ -1,7 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsDecimal, IsNumber, IsOptional } from 'class-validator';
-import { User } from '../users/user.entity';
 import { Category } from '../categories/category.entity';
 
 @Entity('lists')
