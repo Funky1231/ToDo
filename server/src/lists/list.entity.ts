@@ -17,7 +17,7 @@ export class List {
 
   @ApiProperty({ example: 1.2, description: 'значение' })
   @IsDecimal()
-  @Column()
+  @Column({ type: 'numeric' })
   value: number;
 
   @ApiProperty({ example: 1, description: 'id категории' })
