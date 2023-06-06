@@ -7,14 +7,14 @@ export const UserPage: FC = () => {
   const { data, isLoading, isError } = useQuery('users', getUsers);
   const [ userName, setUserName ] = React.useState('');
 
-  const onSave = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onSave = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
     const newUser = {
       userName,
     };
 
-    saveUser(newUser).then();
+    await saveUser(newUser);
     setUserName('');
   };
 

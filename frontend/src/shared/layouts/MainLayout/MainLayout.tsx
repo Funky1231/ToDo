@@ -8,7 +8,6 @@ interface MainLayoutProps {
 export const MainLayout: FC<MainLayoutProps> = ({ content }) => {
 
   return (
-    // write tailwindcss classes for layout wrapper 1200 px width
     <>
       <Header />
       <main className="px-2 py-10 sm:px-4">

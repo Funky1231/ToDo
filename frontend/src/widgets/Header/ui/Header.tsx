@@ -18,8 +18,9 @@ export const Header = () => {
 
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <Link to={'/'} >Home</Link>
-          <Link to={'/user'} >User</Link>
+          <Link to={'/'}>Home</Link>
+          <Link to={'/user'}>User</Link>
+          <Link to={'/list'}>List</Link>
         </Navbar.Collapse>
 
         <Navbar.Collapse>

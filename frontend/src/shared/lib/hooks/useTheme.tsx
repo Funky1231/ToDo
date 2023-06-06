@@ -6,24 +6,21 @@ export enum Theme {
 }
 
 const LOCAL_STORAGE_THEME_KEY = 'theme';
-const initTheme = window.localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme ||
-  (window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.Dark : Theme.Light);
+const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const initTheme = window.localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme
+  || (prefersDarkMode ? Theme.Dark : Theme.Light);
 
 export const useTheme = () => {
   const [ theme, setTheme ] = useState<Theme>(initTheme);
 
   useEffect(() => {
-    if (theme === Theme.Dark) {
-      document.body.classList.add(theme);
-    } else {
-      document.body.classList.remove(Theme.Dark);
-    }
+    document.body.classList.toggle(Theme.Dark, theme === Theme.Dark);
+    window.localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme);
   }, [ theme ]);
 
   const toggleTheme = () => {
     const newTheme = theme === Theme.Light ? Theme.Dark : Theme.Light;
     setTheme(newTheme);
-    window.localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
   };
 
   return {
