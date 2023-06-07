@@ -15,11 +15,11 @@ export class Category {
   id: number;
 
   @ApiProperty({ example: 'tasks', description: 'название категории' })
-  @Column()
-  category_name: string;
+  @Column({ name: 'category_name', type: 'varchar' })
+  categoryName: string;
 
   @ApiProperty({ example: 1, description: 'id пользователя' })
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
-  user_id: number;
+  userId: number;
 }
