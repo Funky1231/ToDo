@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from '@/app/App';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter } from 'react-router-dom';
 import { Flowbite } from 'flowbite-react';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -23,6 +24,7 @@ root.render(
         <Flowbite>
           <App />
         </Flowbite>
+        <ReactQueryDevtools />
       </QueryClientProvider>
     </BrowserRouter>
   </React.StrictMode>,
