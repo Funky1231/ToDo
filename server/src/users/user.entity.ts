@@ -10,6 +10,6 @@ export class User {
   id: number;
 
   @ApiProperty({ example: 'john_doe', description: 'имя пользователя' })
-  @Column()
-  user_name: string;
+  @Column({ name: 'user_name', type: 'varchar' })
+  userName: string;
 }
