@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  nest_postgres:
+    container_name: nest_postgres_db
+    image: postgres:15.3-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 3045
+      POSTGRES_DB: ToDo
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/var/www/nest_postgres/docker-volumes/postgres
+    ports:
+      - 127.0.0.1:5432:5432
+    networks:
+      - nest_postgres
+    restart: unless-stopped
+
+  nest_pgadmin:
+    container_name: nest_pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'gchepilov@gmail.com'
+      PGADMIN_DEFAULT_PASSWORD: 3045
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/www/nest_postgres/docker-volumes/pgadmin
+    ports:
+      - 127.0.0.1:5052:80
+    networks:
+      - nest_postgres
+    restart: unless-stopped
+
+networks:
+  nest_postgres:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:

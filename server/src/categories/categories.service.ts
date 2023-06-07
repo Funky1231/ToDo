@@ -21,13 +21,13 @@ export class CategoriesService {
 
   async saveCategory(categoryName: string, userId: number): Promise<Category> {
     const category = new Category();
-    category.category_name = categoryName;
+    category.categoryName = categoryName;
 
     const user = await this.userRepository.findOneBy({ id: userId });
     if (!user) {
       throw new BadRequestException('пользователь не найден');
     }
-    category.user_id = user.id;
+    category.userId = user.id;
 
     return this.categoryRepository.save(category).catch((e: Error) => {
       this.logger.error(e);
@@ -43,10 +43,7 @@ export class CategoriesService {
   }
 
   async updateCategory(id: number, newName: string): Promise<Category | null> {
-    await this.categoryRepository.update(
-      { id: id },
-      { category_name: newName },
-    );
+    await this.categoryRepository.update({ id: id }, { categoryName: newName });
     return this.categoryRepository.findOneBy({ id });
   }
 

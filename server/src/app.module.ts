@@ -11,11 +11,11 @@ import { List } from './lists/list.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: '127.0.0.1',
       port: 5432,
       username: 'postgres',
       password: '3045',
-      database: 'myLocalDB',
+      database: 'ToDo',
       entities: [User, Category, List],
       synchronize: true,
       autoLoadEntities: true,

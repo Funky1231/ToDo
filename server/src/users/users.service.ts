@@ -17,7 +17,7 @@ export class UsersService {
 
   saveUser(newName: string): Promise<User> {
     const user = new User();
-    user.user_name = newName;
+    user.userName = newName;
     return this.usersRepository.save(user).catch((e: Error) => {
       this.logger.error(e);
       throw new BadRequestException(
@@ -33,7 +33,7 @@ export class UsersService {
 
   async updateUser(id: number, userName: string): Promise<User | null> {
     await this.usersRepository
-      .update({ id: id }, { user_name: userName })
+      .update({ id: id }, { userName: userName })
       .catch((e: Error) => {
         this.logger.error(e);
         throw new BadRequestException(

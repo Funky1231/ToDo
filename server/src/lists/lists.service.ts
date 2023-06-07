@@ -19,7 +19,7 @@ export class ListsService {
     const list = new List();
     title ? (list.title = title) : title;
     list.value = value;
-    list.category_id = categoryId
+    list.categoryId = categoryId;
     return this.listsRepository.save(list).catch((e: Error) => {
       this.logger.error(e);
       throw new BadRequestException(e.message, 'не удалось сохранить запись');
@@ -36,13 +36,10 @@ export class ListsService {
     title?: string,
   ): Promise<List | null> {
     await this.listsRepository
-      .update({ id: id }, {  title, value })
+      .update({ id: id }, { title, value })
       .catch((e: Error) => {
         this.logger.error(e);
-        throw new BadRequestException(
-          e,
-          'не удалось обновить категорию',
-        );
+        throw new BadRequestException(e, 'не удалось обновить категорию');
       });
     return this.listsRepository.findOneBy({ id });
   }
