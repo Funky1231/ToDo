@@ -1,7 +1,6 @@
 import ky from 'ky';
 import { SaveUserRequest, User } from './types';
 
-
 const api = ky.create({ prefixUrl: `${__API__}/users` });
 
 export function getUsers(): Promise<User[]> {

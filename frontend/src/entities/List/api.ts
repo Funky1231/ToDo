@@ -1,5 +1,7 @@
+import { api, ApiEndpoints } from '@/shared/api/api';
 import { List } from './types';
-import { api } from '@/shared/api/api';
+
+const lists = api(ApiEndpoints.LISTS);
 
 interface ApiList {
   getLists: () => Promise<List[]>;
@@ -10,9 +12,9 @@ interface ApiList {
 }
 
 export const apiList: ApiList = {
-  getLists: () => api.get('lists/get-lists').json<List[]>(),
-  getList: (id: number) => api.get(`lists/get-list/${id}`).json<List>(),
-  saveList: (request: List) => api.post('lists/save-list', { json: request }).json<List>(),
-  updateList: (list: List) => api.put('lists/update-list', { json: list }).json<List>(),
-  deleteList: (id: number) => api.delete('lists/delete-list', { json: { id } }).json<void>(),
+  getLists: () => lists.get('get-lists').json<List[]>(),
+  getList: (id: number) => lists.get(`get-list/${id}`).json<List>(),
+  saveList: (request: List) => lists.post('save-list', { json: request }).json<List>(),
+  updateList: (list: List) => lists.put('update-list', { json: list }).json<List>(),
+  deleteList: (id: number) => lists.delete('delete-list', { json: { id } }).json<void>(),
 };

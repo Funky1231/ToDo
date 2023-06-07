@@ -9,6 +9,6 @@ export default defineConfig({
   },
   plugins: [ react() ],
   define: {
-    __API__: JSON.stringify('https://009a-31-146-55-62.ngrok-free.app'),
+    __API__: JSON.stringify('http://localhost:3000'),
   },
 });

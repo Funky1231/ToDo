@@ -29,7 +29,7 @@ export const UserPage: FC = () => {
         {data && (
           <ul>
             {data.map((user) => (
-              <li key={user.id}>{user.id}. {user.user_name}</li>
+              <li key={user.id}>{user.id}. {user.userName}</li>
             ))}
           </ul>
         )}
